@@ -1,0 +1,51 @@
+<!Doctype html>
+<head>
+	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+	</script>
+</head>
+</head>
+<body>
+	<div id="form" ng-app="form" ng-controller="formController" name="form">
+		<p>firstname:<input type="text" id="firstname" name="firstname" ng-model="firstname" required>
+	<span ng-show="form.firstname.$dirty && form.firstname.$invalid">
+	<span ng-show="form.firstname.$error.required">first name is required.</span>
+	</span>
+</p>
+	<br>
+	<br>
+		lastname:<input type="text" id="lastname" name="lastname" ng-model="lastname" required></input>
+		<!--<span  ng-show="form.lastname.$dirty && form.lastname.$invalid">
+	<span ng-show="form.lastname.$error.required">last name is required.</span>
+	</span>-->
+	<div>
+		<input type="button" id="submit" value="submit" ng-click="submit()" ng-disabled="form.firstname.$dirty && form.firstname.$invalid">
+		<table>
+
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+			</tr>
+			<tr ng-repeat="x in names">
+				<td>{{x.name1}}</td>
+				<td>{{x.name2}}</td>
+			</tr>
+		</table>
+	</div>
+	</div>
+
+<script>
+var app=angular.module('form',[]);
+app.controller('formController',function($scope){
+	$scope.firstname="";
+	$scope.lastname="";
+	$scope.names=[];
+	$scope.submit=function(){
+    $scope.names.push({name1:$scope.firstname ,name2:$scope.lastname});
+	}
+
+
+});
+
+</script>
+</body>
+</html>
